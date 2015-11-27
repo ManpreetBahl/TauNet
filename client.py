@@ -1,35 +1,42 @@
+'''
+Copyright (c) 2015 Manpreet Bahl
+
+This file contains the implemenation of the
+client side of TCP. It's used to send messages
+to other clients over the Internet
+'''
+
+#Import Libraries/Other Files
 import socket
 import rc4
 import variables
 
-Username = "Manpreet"
-Version = "0.2"
-
+#Connects and Sends Message to Recipient
 def Client(clientsocket,name,host,port,buf):
 
-	global Username
-	global Version
-
-	host = socket.gethostbyname(host)
-	clientaddr = (host,port)
+	host = socket.gethostbyname(host) #Get Host IP/DNS
+	clientaddr = (host,port) 
 
 	try:
-		clientsocket.connect(clientaddr)
+		clientsocket.connect(clientaddr) #Connect to Recipient's Server
 			
-		message = MultiLineMessage()
-		pdb.set_trace()	
-		message = "Version:{}\r\nFrom:{}\r\nTo:{}\r\n{}\r\n".format(Version,Username, name, message)
+		message = MultiLineMessage() #Write Message
+		
+		#Format data as per TauNet Protocol
+		message = "Version: {}\r\nFrom: {}\r\nTo: {}\r\n{}\r\n".format(variables.version, variables.username, name, message)
 
-		message = rc4.encrypt(message, variables.Rounds, variables.Key)
-		clientsocket.send(message)
+		#Encrypt data usign RC4
+		message = rc4.encrypt(message, variables.rounds, variables.key)
+		clientsocket.send(message) #Send message
 			
-	except socket.error:
+	except socket.error: #Failed to connect
 		print ("Cannot send message")
 	
-	clientsocket.close()
+	clientsocket.close() #Close connection
 
+#Write Message
 def MultiLineMessage():
-	stop = "stop"
+	stop = "stop" #Stop Word when done writing message
 	text = []
 	print ("Type 'stop' (Case sensitive) to stop writting message")
 	print ("Enter Message: ")
@@ -41,11 +48,12 @@ def MultiLineMessage():
 		else:
 			text.append('\t' + get_input)
 	
-	message = "\r\n".join(text)
+	message = "\r\n".join(text) #Add CR and LF as line ending indicators
 	return message
 
+#Creates socket object
 def ClientMain(name, host, port):
 	
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-	Client(s,name,host,port,variables.Buf)
+	Client(s,name,host,port,variables.buf)

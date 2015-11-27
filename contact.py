@@ -1,5 +1,10 @@
 '''
 Copyright (c) 2015 Manpreet Bahl
+
+This file containts the implementaton of the
+Linear Linked List. The LLL is used to store 
+information about all the contacts and allow 
+user to modify the address book.
 '''
 
 class LinkedList:
@@ -41,7 +46,7 @@ class LinkedList:
 	def __init__(self):
 		self.head = None
 
-	def add(self, name, ip, port):
+	def add(self, name, ip, port): #Add node to Linked List
 		#List is Empty
 		if self.head is None: 
 			self.head = LinkedList.__Node()
@@ -51,10 +56,9 @@ class LinkedList:
 			self.head.set_next(None)
 			return
 
-		#List has nodes
-	
-		#Check if first node is greater than name to add
-		if self.head.get_name() > name:
+		#List is not empty
+		#Place node in alphabetical order
+		if self.head.get_name() > name: #Check if first node is greater than name to add
 			temp = LinkedList.__Node()
 			temp.set_name(name)
 			temp.set_ip(ip)
@@ -62,13 +66,13 @@ class LinkedList:
 			temp.set_next(self.head)
 			self.head = temp
 		else:
-			current = self.head
+			current = self.head #Traverse to the right spot and add node
 			while current.has_next():
 				if current.get_next().get_name() > name:
 					break
 				current = current.get_next()
 		
-			temp = LinkedList.__Node()   #(name,ip,port)
+			temp = LinkedList.__Node()
 			temp.set_name(name)
 			temp.set_ip(ip)
 			temp.set_port(port)
@@ -76,7 +80,7 @@ class LinkedList:
 			current.set_next(temp)
 		return
 
-	def display(self):
+	def display(self): #Display the name of the contacts
 		#List is Empty
 		if self.head is None:
 			print "No Contacts!" 
@@ -84,14 +88,17 @@ class LinkedList:
 		
 		current = self.head
 		num = 1
-		while(current):
+		while(current): #Traverse and Display
 			print str(num) + ") " + "Name: " + current.get_name()
 			current = current.get_next()
 			num = num + 1
 	
-	def count(self):
-		if self.head is None:
+	def count(self): #Count number of nodes in Linked List
+		#List is empty
+		if self.head is None: 
 			return 0
+
+		#List is not empty
 		current = self.head
 		count = 0
 		while(current):
@@ -100,7 +107,7 @@ class LinkedList:
 		
 		return count		
 	
-	def delete(self,name):
+	def delete(self,name): #Delete a node (contact) from Linked List
 		current = self.head
 		previous = None
 		match = False
@@ -120,12 +127,14 @@ class LinkedList:
 		else:
 			previous.set_next(current.get_next())
 
-	def search(self,name):
+	def search(self,name): #Search for a Contact and return its IP and Port in a 2-Tuple
 	
+		#List is Empty
 		if self.head is None:
 			print "No Contacts!"
 			return None
 
+		#List is not Empty
 		current = self.head
 		found = False
 		while(current and found is False):
@@ -140,52 +149,3 @@ class LinkedList:
 		if found == False:
 			print "Contact was not Found!"
 			return None
-'''
-def ContactMain():	
-	AddressBook = LinkedList()
-	f = open("TauNet User and Hostnames - User and Hostnames.csv")
-	
-	try:
-		reader = csv.reader(f)
-		for i in range(2):
-			next(reader,None)
-		
-		for row in reader:
-			if row[0] == "":
-				f.close()
-				break
-
-			AddressBook.add(row[0], row[1], int(row[2]))
-	finally:
-		f.close()
-
-	#print "Linked List"
-	#AddressBook.display()
-
-if __name__ == "__main__":
-	ContactMain()
-'''
-
-'''
-def main():
-	test = LinkedList()
-
-	for i in range(0,5):
-		name = raw_input("Enter Name: ")
-		ip = raw_input("Enter IP: ")
-		port = int(raw_input("Enter Port: "))
-		test.add(name, ip, port) 
-	
-	test.display()
-	number = test.count()
-	
-	print "Number of Nodes: %d" %number
-
-	to_find = raw_input("Enter Name to Find: ")
-	found_ip, found_port = test.search(to_find)
-
-	print "Ip Found: " + found_ip
-	print "Port Found: %d" %found_port
-	
-main()
-'''

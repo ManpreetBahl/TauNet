@@ -1,8 +1,20 @@
+'''
+Copyright (c) 2015 Manpreet Bahl
+
+This file containts the RC4 implementation
+for encrypting and decryption data. The 
+implementation follows the Pseudocode given
+by Bart Massey. 
+'''
+
+#Import Library
 import os
 
+#Variables
 IV_Size = 10
 Array_Size = 256
 
+#RC4 Key Scheduling
 def RC4(keystream_len,rounds,key):
 	#Length of Key
 	key_len = len(key)

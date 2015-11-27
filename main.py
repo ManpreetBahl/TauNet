@@ -1,3 +1,12 @@
+'''
+Copyright (c) 2015 Manpreet Bahl
+
+This file contains allows for the user
+to send messages, recieve messsages, update
+address book, and view/delete message history
+'''
+
+#Import Library/Other Files
 import server
 import client
 import contact
@@ -7,9 +16,11 @@ import sys
 import csv
 import os
 
+#Start the Server
 def Server():	
 	server.ServerMain()
 
+#Load Contacts from CSV File
 def LoadContacts():
 	AddressBook = contact.LinkedList()
 	f = open("TauNet User and Hostnames - User and Hostnames.csv")
@@ -32,6 +43,7 @@ def LoadContacts():
 
 	return AddressBook
 
+#Save Message History of Current Session to a CSV File
 def SaveMessageHistory():
 	
 	f = open("Message History.csv", "a")
@@ -42,6 +54,7 @@ def SaveMessageHistory():
 	finally:
 		f.close()
 
+#Go Again with Different Prompts based on Choice
 def GoAgain(choice):
 	while True:
 		if choice == 2:
@@ -65,6 +78,7 @@ def GoAgain(choice):
 	else:
 		return False
 
+#Menu Interface
 def Menu():
 
 	AddressBook = LoadContacts()
@@ -166,8 +180,9 @@ def Menu():
 
 	SaveMessageHistory()	
 	sys.exit(0)
-	
-def main():
+
+#Main 	
+def Main():
 	
 	StartServer = threading.Thread(target = Server)
 	StartServer.daemon = True
@@ -177,4 +192,4 @@ def main():
 
 	StartServer.join()
 
-main()
+Main()
