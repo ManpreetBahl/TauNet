@@ -73,7 +73,7 @@ def Menu():
 	
 	while choice != 8:	
 		print("\n")
-		print("----------MENU----------")
+		print("---------------------MENU---------------------")
 		print("1) View Messages (Current Session)")
 		print("2) Send Messages")
 		print("3) View Message History (Previous Sessions)")
@@ -82,7 +82,7 @@ def Menu():
 		print("6) Add Contact")
 		print("7) Remove Contact")
 		print("8) Quit")
-		print("------------------------") 
+		print("----------------------------------------------") 
 		print("\n")
 		choice = input("Enter Choice: ")
 	
@@ -178,4 +178,3 @@ def main():
 	StartServer.join()
 
 main()
-

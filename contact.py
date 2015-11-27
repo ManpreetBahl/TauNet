@@ -1,3 +1,7 @@
+'''
+Copyright (c) 2015 Manpreet Bahl
+'''
+
 class LinkedList:
 	
 	class __Node:
