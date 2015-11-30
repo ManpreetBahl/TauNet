@@ -78,6 +78,11 @@ def GoAgain(choice):
 	else:
 		return False
 
+def AddContactToFile(name,host,port):
+	
+	f = open("TauNet User and Hostnames - User and Hostnames.csv")
+	
+	
 #Menu Interface
 def Menu():
 
@@ -118,10 +123,12 @@ def Menu():
 				again = GoAgain(choice)
 
 		elif choice == 3:
+			temp = os.system("clear")
 
 			try:
 				f = open("Message History.csv")	
 				reader = csv.reader(f)
+				print ("Message History from Previous Sessions")
 				for row in reader:
 					print ''.join(row)
 				f.close()
@@ -132,6 +139,8 @@ def Menu():
 		elif choice == 4:
 			try:
 				os.remove("Message History.csv")
+				temp = os.system("clear")
+				print ("Deleted Message History from Previous Sessions")
 			except OSError:
 				print ("Cannot delete file.")
 			
@@ -152,9 +161,9 @@ def Menu():
 
 					AddressBook.add(add_person,host,int(port))
 					add_again = GoAgain(choice)
-			else:
-				print ("Too many contacts! Please delete some!")
-				add_again = False
+				else:
+					print ("Too many contacts! Please delete some!")
+					add_again = False
 			
 		elif choice == 7: #CHANGE FILE AS WELL
 			temp = os.system("clear")

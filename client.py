@@ -23,7 +23,7 @@ def Client(clientsocket,name,host,port,buf):
 		message = MultiLineMessage() #Write Message
 		
 		#Format data as per TauNet Protocol
-		message = "Version: {}\r\nFrom: {}\r\nTo: {}\r\n{}\r\n".format(variables.version, variables.username, name, message)
+		message = "version: {}\r\nfrom: {}\r\nto: {}\r\n\r\n{}\r\n".format(variables.version, variables.username, name, message)
 
 		#Encrypt data usign RC4
 		message = rc4.encrypt(message, variables.rounds, variables.key)
