@@ -9,7 +9,7 @@ multiple files.
 #Variables
 username = "manpreet20"
 version = "0.2"
-key = ""
+key = ''
 rounds = 20
 buf = 1024
 

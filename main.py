@@ -30,7 +30,7 @@ def LoadContacts():
 		next(reader,None)
 		
 		encryption_key = reader.next()
-		variables.Key = encryption_key[0]	
+		variables.key = encryption_key[0]	
 
 		for row in reader:
 			if row[0] == "":
@@ -61,11 +61,11 @@ def GoAgain(choice):
 			again = raw_input("Send Message to Another Client? [Y/N]: ")
 			againUpper = again.upper()
 		
-		if choice == 4:
+		if choice == 6:
 			again = raw_input("Add another contact? [Y/N]: ")
 			againUpper = again.upper()
 	
-		if choice == 5:
+		if choice == 7:
 			again = raw_input("Delete another contact? [Y/N]: ")
 			againUpper = again.upper()
 
