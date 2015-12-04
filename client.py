@@ -4,6 +4,9 @@ Copyright (c) 2015 Manpreet Bahl
 This file contains the implemenation of the
 client side of TCP. It's used to send messages
 to other clients over the Internet
+
+The framework for this code was gotten at:
+	https://wiki.python.org/moin/TcpCommunication
 '''
 
 #Import Libraries/Other Files
@@ -46,7 +49,7 @@ def MultiLineMessage():
 		if get_input == stop:
 			break
 		else:
-			text.append('\t' + get_input)
+			text.append(get_input)
 	
 	message = "\r\n".join(text) #Add CR and LF as line ending indicators
 	return message

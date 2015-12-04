@@ -4,6 +4,12 @@ Copyright (c) 2015 Manpreet Bahl
 This file contains the implementation of the
 server side of TCP. This allows for user to
 recieve messages from multiple clients.
+
+This code was modified from the code found
+at:
+
+http://stackoverflow.com/questions/17453212/multi-threaded-tcp-server-in-python
+
 '''
 
 #Import Libraries/Other Files

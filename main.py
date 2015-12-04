@@ -77,11 +77,6 @@ def GoAgain(choice):
 		return True
 	else:
 		return False
-
-def AddContactToFile(name,host,port):
-	
-	f = open("TauNet User and Hostnames - User and Hostnames.csv")
-	
 	
 #Menu Interface
 def Menu():
