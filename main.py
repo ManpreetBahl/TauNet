@@ -15,6 +15,7 @@ import variables
 import sys
 import csv
 import os
+import rc4
 
 #Start the Server
 def Server():	
@@ -49,7 +50,7 @@ def SaveMessageHistory():
 	f = open("Message History.csv", "a")
 
 	try:
-		f.write("\n".join(variables.messages))
+		f.write(rc4.encrypt("\n".join(variables.messages), variables.rounds,variables.key))
 
 	finally:
 		f.close()
@@ -125,7 +126,9 @@ def Menu():
 				reader = csv.reader(f)
 				print ("Message History from Previous Sessions")
 				for row in reader:
-					print ''.join(row)
+					row = rc4.decrypt('\n'.join(row), variables.rounds, variables.key)
+					print row
+					
 				f.close()
 
 			except IOError:
