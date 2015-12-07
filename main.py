@@ -15,7 +15,6 @@ import variables
 import sys
 import csv
 import os
-import rc4
 
 #Start the Server
 def Server():	
@@ -50,7 +49,7 @@ def SaveMessageHistory():
 	f = open("Message History.csv", "a")
 
 	try:
-		f.write(rc4.encrypt("\n".join(variables.messages), variables.rounds,variables.key))
+		f.write("\n".join(variables.messages))
 
 	finally:
 		f.close()
@@ -99,8 +98,14 @@ def Menu():
 		print("8) Quit")
 		print("----------------------------------------------") 
 		print("\n")
-		choice = input("Enter Choice: ")
 	
+		try:	
+			choice = int(raw_input("Enter Choice: "))
+		except ValueError:
+			temp = os.system("clear")
+			print("Invalid Input! Please enter a choice from 1-8")
+			continue
+
 		if choice == 1:
 			temp = os.system("clear")
 			variables.display()
@@ -122,13 +127,12 @@ def Menu():
 			temp = os.system("clear")
 
 			try:
-				f = open("Message History.csv")	
+				f = open("Message History.csv", 'rb')	
 				reader = csv.reader(f)
 				print ("Message History from Previous Sessions")
 				for row in reader:
-					row = rc4.decrypt('\n'.join(row), variables.rounds, variables.key)
-					print row
-					
+					print ''.join(row)
+		
 				f.close()
 
 			except IOError:
@@ -146,7 +150,7 @@ def Menu():
 			temp = os.system("clear")
 			AddressBook.display()
 
-		elif choice == 6: #CHANGE FILE AS WELL
+		elif choice == 6:
 			temp = os.system("clear")
 			add_again = True
 			
@@ -163,7 +167,7 @@ def Menu():
 					print ("Too many contacts! Please delete some!")
 					add_again = False
 			
-		elif choice == 7: #CHANGE FILE AS WELL
+		elif choice == 7:
 			temp = os.system("clear")
 			delete_again = True
 		
@@ -183,7 +187,8 @@ def Menu():
 			break
 
 		else:
-			print("Invalid Input! Please enter a choice from 1-6")
+			temp = os.system("clear")
+			print("Invalid Input! Please enter a choice from 1-8")
 
 	SaveMessageHistory()	
 	sys.exit(0)
