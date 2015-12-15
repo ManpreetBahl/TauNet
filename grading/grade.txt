@@ -1,4 +1,9 @@
-[In Progress]
-SRS is too brief. 
-Reasonable GitHut history.
-Codes with good comments.
+Manpreet Bahl
+98 A
+
+Hao: SRS is too brief.  Reasonable Git history.  Code with
+good comments.
+
+Bart: Great PER. Great single-client functionality with lots
+of extra stuff. Good job.
+
