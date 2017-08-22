@@ -1,5 +1,4 @@
-# Bahl_Manpreet_Project
-Copyright Â© 2015 Manpreet Bahl
+Copyright © 2015 Manpreet Bahl
 
 # TauNet
 
